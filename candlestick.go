@@ -10,3 +10,13 @@ type CandleStick struct {
 	Low   float64   `bson:"low"    json:"low,omitempty"`
 	Close float64   `bson:"close"  json:"close,omitempty"`
 }
+
+// Equal will compare two candlestick
+func (cs *CandleStick) Equal(b *CandleStick) bool {
+	t := cs.Time.Equal(b.Time)
+	o := cs.Open == b.Open
+	h := cs.High == b.High
+	l := cs.Low == b.Low
+	c := cs.Close == b.Close
+	return t && o && h && l && c
+}
